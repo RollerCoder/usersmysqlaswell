@@ -5,12 +5,12 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 3001;
+
 
 // CORS configuration
 app.use(
   cors({
-    origin: "http://localhost:3000", // Allow requests from React app
+    origin: "http://localhost:3001", // Allow requests from React app
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
