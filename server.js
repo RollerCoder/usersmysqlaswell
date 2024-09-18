@@ -3,14 +3,14 @@ const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
+const PORT = process.env.PORT || 3000;
 
 const app = express();
-
 
 // CORS configuration
 app.use(
   cors({
-    origin: "http://localhost:3001", // Allow requests from React app
+    origin: "http://localhost:3000", // Allow requests from React app
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -99,6 +99,6 @@ app.get("/users", (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

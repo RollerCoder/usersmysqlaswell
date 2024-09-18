@@ -17,14 +17,14 @@
     "web-vitals": "^4.2.3"
   },
   "scripts": {
-    "start-server": "node server.js",
-    "start-client": "set port=3001 && react-scripts start",
-    "client"  : "react-scripts \"npm run start-client",
-    "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+  "start-server": "node server.js",
+  "start-client": "set PORT=3000 && react-scripts start",
+  "client": "npm run start-client",
+  "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
   "eslintConfig": {
     "extends": [
       "react-app",

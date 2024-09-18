@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 function App() {
@@ -10,11 +10,10 @@ function App() {
     LastName: "",
     EmailAddress: "",
   });
-  const [editingUser, setEditingUser] = useState(null);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     try {
       const response = await axios.get(
         `http://localhost:3001/users?page=${currentPage}&perPage=10`
@@ -25,25 +24,20 @@ function App() {
     } catch (error) {
       console.error("Error fetching users:", error);
       if (error.response) {
-        console.error("Error data:", error.response.data);
-        console.error("Error status:", error.response.status);
-        console.error("Error headers:", error.response.headers);
         setError(
           `Failed to fetch users. Server responded with: ${error.response.data.error}`
         );
       } else if (error.request) {
-        console.error("Error request:", error.request);
         setError("Failed to fetch users. No response received from server.");
       } else {
-        console.error("Error message:", error.message);
         setError(`Failed to fetch users. Error: ${error.message}`);
       }
     }
-  };
+  }, [currentPage]);
 
   useEffect(() => {
     fetchUsers();
-  }, [currentPage]);
+  }, [fetchUsers, currentPage]);
 
   const handleInputChange = (e, setter) => {
     const { name, value } = e.target;
